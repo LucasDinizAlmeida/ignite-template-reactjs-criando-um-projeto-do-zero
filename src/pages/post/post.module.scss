@@ -13,12 +13,16 @@
     }
 
     > div {
-      width: 357px;
+      width: 500px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin: 3rem 0;
       color: var(--info);
+
+      time, span {
+        margin-left: 0.5rem;
+      }
 
       div {
         display: flex;
@@ -30,6 +34,7 @@
   section {
     margin-top: 5rem;
     font-size: 1.125rem;
+    text-align: justify;
     align-items: 1.375rem;
     color: var(--info);
 

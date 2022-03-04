@@ -12,17 +12,20 @@ interface Post {
 }
 
 interface LoadMorePostsButtonProps {
-  next_page?: string,
+  next_page: string | null,
   setPosts:  Dispatch<SetStateAction<Post[]>>,
-  posts: Post[]
+  posts: Post[],
+  setNextPage: Dispatch<SetStateAction<string>>
 }
 
-export function LoadMorePostsButton({ next_page, setPosts, posts }: LoadMorePostsButtonProps) {
+export function LoadMorePostsButton({ next_page, setPosts, posts, setNextPage }: LoadMorePostsButtonProps) {
 
   const handleFetchNextPage =async() => {
 
     const response = await fetch(next_page)
     const postsResponse = await response.json()
+
+    console.log(postsResponse)
 
     const results = postsResponse.results.map(post => {
 
@@ -42,15 +45,15 @@ export function LoadMorePostsButton({ next_page, setPosts, posts }: LoadMorePost
     })
 
 
-
     setPosts([
       ...posts,
       ...results
     ])
-
-
+    setNextPage(postsResponse.next_page)
 
   }
+
+  
 
   return next_page? (
     <button 
